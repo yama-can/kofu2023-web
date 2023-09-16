@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Game Info generator</title>
+	<script src="/game-info/main.js"></script>
+	<link rel="stylesheet" href="/game-info/main.css" />
+</head>
+
+<body>
+	<h1>Kofu Game Info generator</h1>
+	<p data-required>* がついている項目は必須項目です。</p>
+	<label for="title" data-required>Title :</label>
+	<input type="text" id="title" required />
+	<br />
+	<label for="description" data-required>Description :</label>
+	<input type="text" id="description" required />
+	<br />
+	<label for="creator" data-required>Creator : </label>
+	<input type="text" id="creator" required />
+	<br />
+	<label for="creatorpath">Creator Path :</label>
+	<input type="text" id="creatorpath" />
+	<br />
+	<label for="launch" data-required>Launch Path :</label>
+	<input type="text" id="launch" required />
+	<br />
+	<label for="icon">Icon Path :</label>
+	<input type="text" id="icon" />
+	<br />
+	<label for="target">Target :</label>
+	<input type="text" id="target" />
+	<br />
+	<button onclick="generate()">Generate</button>
+	<br />
+	<label for="output">Output: </label>
+	<textarea id="output" readonly></textarea>
+	<br />
+	<a href="" hidden id="downloadlink" download="game.xml"></a>
+	<button id="download" onclick="download()" disabled>Download</button>
+</body>
+
+</html>

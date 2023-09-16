@@ -1,0 +1,4 @@
+label[data-required]::before {
+	content: "*";
+	color: red;
+}

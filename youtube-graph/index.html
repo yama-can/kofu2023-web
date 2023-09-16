@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>YouTube Graph</title>
+	<link href="/c3/c3.css" rel="stylesheet">
+	<script src="/c3/d3.min.js"></script>
+	<script src="/c3/c3.js"></script>
+	<script src="/youtube-graph/main.js"></script>
+</head>
+
+<body>
+	<h1>YouTube Graph</h1>
+	<hr>
+	<h2>設定</h2>
+	<lebel for="show-name">団体名を表示: </lebel>
+	<input type="checkbox" id="show-name" onchange="viewname(this)">
+	<hr>
+	<details>
+		<summary>使用上の注意</summary>
+		<ul>
+			<li>YouTubeの仕様により、視聴回数・高評価数の更新が遅れることがあります。なお、それは動画のリンクから確認した際も同じです。</li>
+			<li>一部の動画で、視聴回数・高評価数が激減する事例が確認されています。YouTube側の問題なので、ご了承ください。</li>
+		</ul>
+	</details>
+	<hr>
+	<h2>視聴回数</h2>
+	<div id="graph-view"></div>
+	<hr>
+	<h2>高評価数</h2>
+	<div id="graph-like"></div>
+</body>
+
+</html>
