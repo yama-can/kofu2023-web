@@ -28,6 +28,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 	(document.querySelector("input#width") as HTMLInputElement).value = width.toString();
 
 	updateGraph();
+	
+	view.element.addEventListener("scroll", () => {
+		like.element.scrollLeft = view.element.scrollLeft;
+	})
+	like.element.addEventListener("scroll", () => {
+		view.element.scrollLeft = like.element.scrollLeft;
+	})
 })
 
 function viewname(e: HTMLInputElement) {
