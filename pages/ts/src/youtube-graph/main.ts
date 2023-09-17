@@ -1,10 +1,10 @@
-let viewLabels = [], likeLabels = [];
+let viewLabels: [string, ...number[]][] = [], likeLabels: [string, ...number[]][] = [];
 let view, like;
-let datas = {};
-let types = {}, untypes = {};
+let datas: { [key: string]: [number, string, string, string, number, number, null, null][] } = {};
+let types: { [key: string]: string } = {}, untypes: { [key: string]: string } = {};
 
 document.addEventListener("DOMContentLoaded", async () => {
-	const data = await (await fetch("https://script.google.com/macros/s/AKfycbydZ2NjjHbOOqeSlMrbKIPplDI-m6YokEiZiSSI1KvI8ni5OrahHAaUIh9rcjW7mmGWZQ/exec")).json();
+	const data: [number, string, string, string, number, number, null, null][] = await (await fetch("https://script.google.com/macros/s/AKfycbydZ2NjjHbOOqeSlMrbKIPplDI-m6YokEiZiSSI1KvI8ni5OrahHAaUIh9rcjW7mmGWZQ/exec")).json();
 	data.forEach((d) => {
 		datas[d[2]] = datas[d[2]] || [];
 		datas[d[2]].push(d);
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 	});
 })
 
-function viewname(e) {
+function viewname(e: HTMLInputElement) {
 	if (e.checked) {
 		viewLabels = viewLabels.map((v) => {
 			v[0] = types[v[0]];

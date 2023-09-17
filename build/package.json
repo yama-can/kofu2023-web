@@ -1,0 +1,20 @@
+{
+  "name": "build",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+		"preinstall": "npm i -g typescript",
+		"install": "tsc",
+		"start": "node dist"
+  },
+  "author": "Roisty <support@roisty.com> (https://www.roisty.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "@types/fs-extra": "^11.0.2",
+    "@types/node": "^20.6.2",
+    "fs-extra": "^11.1.1",
+    "typescript": "^5.2.2"
+  }
+}
