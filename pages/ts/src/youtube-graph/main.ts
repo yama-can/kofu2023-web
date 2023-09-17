@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 	(document.querySelector("input#width") as HTMLInputElement).value = width.toString();
 
 	updateGraph();
-	
+
 	view.element.addEventListener("scroll", () => {
 		like.element.scrollLeft = view.element.scrollLeft;
 	})
@@ -130,6 +130,13 @@ function updateGraph() {
 
 function setwidth(e: HTMLInputElement) {
 	width = Number(e.value);
+	view.resize({ width, height: 500 });
+	like.resize({ width, height: 500 });
+}
+
+function resetwidth() {
+	width = timestamps.length * 30;
+	(document.querySelector("input#width") as HTMLInputElement).value = width.toString();
 	view.resize({ width, height: 500 });
 	like.resize({ width, height: 500 });
 }
