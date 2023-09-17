@@ -1,0 +1,6 @@
+{
+	"scripts": {
+		"install": "cd build && npm install && cd .. && cd pages/ts && npm install",
+		"start": "cd build && npm start"
+	}
+}
