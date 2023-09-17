@@ -1,7 +1,9 @@
 let viewLabels: [string, ...number[]][] = [], likeLabels: [string, ...number[]][] = [];
-let view, like;
+let timestamps: number[] = [];
+let view: c3.ChartAPI, like: c3.ChartAPI;
 let datas: { [key: string]: [number, string, string, string, number, number, null, null][] } = {};
 let types: { [key: string]: string } = {}, untypes: { [key: string]: string } = {};
+let width = 800;
 
 document.addEventListener("DOMContentLoaded", async () => {
 	const data: [number, string, string, string, number, number, null, null][] = await (await fetch("https://script.google.com/macros/s/AKfycbydZ2NjjHbOOqeSlMrbKIPplDI-m6YokEiZiSSI1KvI8ni5OrahHAaUIh9rcjW7mmGWZQ/exec")).json();
@@ -16,23 +18,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 	for (let v in datas) {
 		if (!v) continue;
 		datas[v].sort((a, b) => a[0] - b[0]);
+		if (timestamps.length == 0) {
+			timestamps = datas[v].map((v) => v[0]);
+		}
 		viewLabels.push([v, ...datas[v].map((v) => v[4])]);
 		likeLabels.push([v, ...datas[v].map((v) => v[5])]);
 	}
-	console.log(datas);
-	console.log(viewLabels);
-	view = c3.generate({
-		bindto: '#graph-view',
-		data: {
-			columns: viewLabels
-		}
-	});
-	like = c3.generate({
-		bindto: '#graph-like',
-		data: {
-			columns: likeLabels
-		}
-	});
+	width = timestamps.length * 30;
+	(document.querySelector("input#width") as HTMLInputElement).value = width.toString();
+
+	updateGraph();
 })
 
 function viewname(e: HTMLInputElement) {
@@ -57,16 +52,77 @@ function viewname(e: HTMLInputElement) {
 		});
 	}
 
+	updateGraph();
+}
+
+function updateGraph() {
 	view = c3.generate({
 		bindto: '#graph-view',
 		data: {
-			columns: viewLabels
+			columns: [
+				["times", ...timestamps],
+				...viewLabels
+			],
+			x: "times",
+			xFormat: "%Y-%m-%d %H:%M:%S.%L",
+		},
+		axis: {
+			x: {
+				type: "timeseries",
+				tick: {
+					fit: true,
+					format: "%Y-%m-%d %H:%M:%S.%L",
+					width: 100,
+					rotate: 85
+				},
+				label: "時刻",
+				height: 200
+			},
+			y: {
+				label: "再生回数",
+				tick: {
+					format: d3.format(",")
+				}
+			}
 		}
 	});
 	like = c3.generate({
 		bindto: '#graph-like',
 		data: {
-			columns: likeLabels
+			columns: [
+				["times", ...timestamps],
+				...likeLabels
+			],
+			x: "times",
+			xFormat: "%Y-%m-%d %H:%M:%S.%L",
+		},
+		axis: {
+			x: {
+				type: "timeseries",
+				tick: {
+					fit: true,
+					format: "%Y-%m-%d %H:%M:%S.%L",
+					width: 100,
+					rotate: 85
+				},
+				label: "時刻",
+				height: 200
+			},
+			y: {
+				label: "高評価数",
+				tick: {
+					format: d3.format(",")
+				}
+			}
 		}
 	});
+
+	view.resize({ width, height: 500 });
+	like.resize({ width, height: 500 });
+}
+
+function setwidth(e: HTMLInputElement) {
+	width = Number(e.value);
+	view.resize({ width, height: 500 });
+	like.resize({ width, height: 500 });
 }

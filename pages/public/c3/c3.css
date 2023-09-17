@@ -139,6 +139,8 @@
 /*-- Tooltip --*/
 .c3-tooltip-container {
   z-index: 10;
+	overflow-y: scroll;
+	max-height: 500px;
 }
 
 .c3-tooltip {

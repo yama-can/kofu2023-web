@@ -1,0 +1,5 @@
+#graph-view,
+#graph-like {
+	overflow-x: scroll;
+	min-height: 550px;
+}

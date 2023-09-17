@@ -1,6 +1,6 @@
 {
 	"scripts": {
-		"install": "cd build && npm install && cd .. && cd pages/ts && npm install",
+		"install": "cd build && npm install && cd .. && cd pagesgi/ts && npm install",
 		"start": "cd build && npm start"
 	}
 }
