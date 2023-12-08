@@ -6,7 +6,7 @@ let types: { [key: string]: string } = {}, untypes: { [key: string]: string } = 
 let width = 800;
 
 document.addEventListener("DOMContentLoaded", async () => {
-	const data: [number, string, string, string, number, number, null, null][] = await (await fetch("https://script.google.com/macros/s/AKfycbydZ2NjjHbOOqeSlMrbKIPplDI-m6YokEiZiSSI1KvI8ni5OrahHAaUIh9rcjW7mmGWZQ/exec")).json();
+	const data: [number, string, string, string, number, number, null, null][] = await (await fetch("https://github.com/yama-can/kofu2023-web/releases/download/latest/echo.json\")).json();
 	data.forEach((d) => {
 		datas[d[2]] = datas[d[2]] || [];
 		datas[d[2]].push(d);
